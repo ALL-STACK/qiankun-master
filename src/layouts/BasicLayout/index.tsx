@@ -5,14 +5,13 @@ import {
   VideoCameraOutlined,
   MailOutlined,
 } from '@ant-design/icons';
-import { history } from 'umi';
+import { history, connect } from 'umi';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-export default ({ children, ...otherProps }) => {
-  // const [count, setCount ] = useState(0)
-  // console.log(otherProps)
+const BasicLayout = ({ children, global, ...otherProps }) => {
+  
   return (
     <Layout>
       <Sider
@@ -46,10 +45,6 @@ export default ({ children, ...otherProps }) => {
               服务详情
             </Menu.Item>
           </SubMenu>
-          {/* <Menu.ItemGroup key="g1" title="服务">
-            <Menu.Item key="1" onClick={() => history.push('/app1/service/list')}>服务列表</Menu.Item>
-            <Menu.Item key="2" onClick={() => history.push('/app1/service/detail')}>服务详情</Menu.Item>
-          </Menu.ItemGroup> */}
           <Menu.Item
             key="2"
             icon={<VideoCameraOutlined />}
@@ -77,9 +72,15 @@ export default ({ children, ...otherProps }) => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
+          <h1>{global.count}</h1>
           Ant Design ©2018 Created by Ant UED
         </Footer>
       </Layout>
     </Layout>
   );
 };
+
+
+export default connect(({ global}) => ({
+  global
+}))(BasicLayout)

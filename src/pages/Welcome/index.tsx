@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import umi from 'umi';
+const { connect } = require('umi');
 
-const Index = ({ dispatch }: any) => {
+const Index = ({ dispatch, global }: any) => {
 
   useEffect(() => {
     // dispatch({
@@ -17,7 +18,7 @@ const Index = ({ dispatch }: any) => {
     //   onFailed: error => {
     //   },
     // });
-    console.log('嘿嘿： ', umi)
+    console.log(umi)
   }, []);
 
   return (
@@ -47,8 +48,11 @@ const Index = ({ dispatch }: any) => {
       <h1>欢迎欢迎，热烈欢迎</h1>
       <h1>欢迎欢迎，热烈欢迎</h1>
     </div>
-    
   )
 }
 
-export default Index;
+export default connect(({ index, loading, global }) => ({
+  index,
+  loading: loading.models.index,
+  global,
+}),)(Index);

@@ -24,12 +24,6 @@ export default  [
           },
         ]
       },
-      // {
-      //   name: 'app',
-      //   path: '/management/app1',
-      //   title: '应用一',
-      //   microApp: 'app1',
-      // },
       {
         name: 'app1',
         path: '/app1',
@@ -44,7 +38,7 @@ export default  [
         microApp: 'app2',
         title: '应用二',
         microAppProps: {
-          autoSetLoading: true,
+          autoSetLoading: false,
         }
       },
     ],

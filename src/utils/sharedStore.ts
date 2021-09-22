@@ -1,5 +1,5 @@
-import { getDvaApp } from 'umi';
-import utils from './utils/index'; // 引入共有工具函数
+import utils from './utils'; // 引入共有工具函数
+const { getDvaApp } = require('umi');
 
 class SharedStore {
   /**
@@ -8,17 +8,18 @@ class SharedStore {
   getGlobal() {
     const dva = getDvaApp();
     const { global } = dva._store.getState();
+    // console.log(global)
     return global || {};
   }
 
   /**
    * 更新字典数据
    */
-  fetchDictData(dict) {
+  fetchGlobalData(payload: any) {
     const dva = getDvaApp();
     return dva._store.dispatch({
-      type: 'dict/fetchDictData',
-      payload: dict,
+      type: 'global/changeCount',
+      payload,
     });
   }
 
